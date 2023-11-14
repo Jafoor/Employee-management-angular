@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {EmpManageComponent} from "./emp-manage/emp-manage.component";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'employee-management';
+
+  constructor(private _dialog: MatDialog) {
+  }
+
+  openAddEditEmpForm() {
+    this._dialog.open(EmpManageComponent)
+  }
 }
