@@ -35,18 +35,6 @@
       "company": "Skinte",
       "experience": 9,
       "package": 32
-    },
-    {
-      "firstName": "Samiul",
-      "lastName": "Siddique",
-      "email": "samiul@gmail.com",
-      "gender": "male",
-      "dob": "1946-06-18T17:30:00.000Z",
-      "education": "Bsc",
-      "company": "Tiger IT",
-      "experience": "32",
-      "package": "100000",
-      "id": 9
     }
   ]
 }

@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {EmpManagementService} from "../services/emp-management/emp-management.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {CoreService} from "../services/core/core.service";
 
 @Component({
   selector: 'app-emp-manage',
@@ -20,7 +21,7 @@ export class EmpManageComponent implements OnInit{
     'Bs'
   ]
 
-  constructor( private _fb: FormBuilder, private _empService: EmpManagementService, private _dialogRef: MatDialogRef<EmpManageComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor( private _fb: FormBuilder, private _empService: EmpManagementService, private _dialogRef: MatDialogRef<EmpManageComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private _coreService: CoreService) {
     this.empForm = this._fb.group({
       firstName: '',
       lastName: '',
@@ -45,7 +46,7 @@ export class EmpManageComponent implements OnInit{
       if(this.data){
         this._empService.updateEmployee(this.data.id, this.empForm.value).subscribe({
           next: (val: any) => {
-            alert('Employee updated Successfully.');
+            this._coreService.openSnackBar('Employee updated Successfully')
             this._dialogRef.close(true);
           },
           error: (err) => {
@@ -55,7 +56,7 @@ export class EmpManageComponent implements OnInit{
       } else {
         this._empService.addEmployee(this.empForm.value).subscribe({
           next: (val: any) => {
-            alert('Employee added Successfully.');
+            this._coreService.openSnackBar('Employee added Successfully')
             this._dialogRef.close(true);
           },
           error: (err) => {
