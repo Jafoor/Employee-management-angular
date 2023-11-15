@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {EmpManagementService} from "../services/emp-management/emp-management.service";
+import {DialogRef} from "@angular/cdk/dialog";
 
 @Component({
   selector: 'app-emp-manage',
@@ -18,7 +20,7 @@ export class EmpManageComponent {
     'Bs'
   ]
 
-  constructor( private _fb: FormBuilder) {
+  constructor( private _fb: FormBuilder, private _empService: EmpManagementService, private _dialogRef: DialogRef<EmpManageComponent>) {
     this.empForm = this._fb.group({
       firstName: '',
       lastName: '',
@@ -33,8 +35,16 @@ export class EmpManageComponent {
   }
 
   onSubmitForm() {
-    if(this.empForm.valid) {
-      console.log(this.empForm.value);
+    if (this.empForm.valid) {
+      this._empService.addEmployee(this.empForm.value).subscribe({
+        next: (val: any) => {
+          alert('Employee added Successfully.');
+          this._dialogRef.close();
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
     }
   }
 }

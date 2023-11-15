@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { EmpManageComponent } from './emp-manage/emp-manage.component';
 import {MatModule} from "./modules/mat/mat.module";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {MatModule} from "./modules/mat/mat.module";
     BrowserAnimationsModule,
     MatModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
